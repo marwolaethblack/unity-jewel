@@ -4,4 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/preload.unity
+    guid: 55d76d73e01fcf447a071cfe10a62003
+  - enabled: 1
+    path: Assets/Scenes/jewel.unity
+    guid: a8ccc26b9095d1448b82639ab678220a
