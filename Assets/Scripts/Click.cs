@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Click : MonoBehaviour {
+public class Click : MonoBehaviour
+{
+    //Can do this for now
+    public static ulong Result;
 
 	// Use this for initialization
-	void Start () {
-		
+	void Start ()
+	{
 	}
 	
 	// Update is called once per frame
@@ -20,10 +23,14 @@ public class Click : MonoBehaviour {
 	        RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 	        if (hit.collider != null)
 	        {
-	            Debug.Log(hit.collider.gameObject.name);
+	            CalculateJewels();
 	        }
 	    }
+    }
 
-
+    void CalculateJewels()
+    {
+        Result += State.jewels + (ulong)State.jewelsPerClick;
+        Debug.Log(Result);
     }
 }

@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class State : MonoBehaviour {
 
-    public static ulong jewels { get; set; }
-    public static float jewelsPerSecond { get; set; }
+    public static ulong jewels;
+    public static float jewelsPerSecond;
     public static List<GameObject> buildings { get; set; }
     public static List<GameObject> upgrades { get; set; }
+    public static float jewelsPerClick;
 
     
     
 
 	// Use this for initialization
-	void Awake () {
+	void Awake() {
         jewels = 0;
         jewelsPerSecond = 0;
+	    jewelsPerClick = 1;
         buildings = new List<GameObject>();
         upgrades = new List<GameObject>();
 
