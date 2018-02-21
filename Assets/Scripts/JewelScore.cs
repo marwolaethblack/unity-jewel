@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Resources;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,7 +18,7 @@ public class JewelScore : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-            string text = "Jewels: " + Click.Result;
+            string text = "Jewels: " + State.jewels + "\nJewels/s: " + State.jewelsPerSecond;
             _text.text = text;
         }
     }

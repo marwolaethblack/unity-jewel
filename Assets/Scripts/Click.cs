@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Click : MonoBehaviour
 {
-    //Can do this for now
-    public static ulong Result;
-
 	// Use this for initialization
 	void Start ()
 	{
@@ -23,14 +20,31 @@ public class Click : MonoBehaviour
 	        RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 	        if (hit.collider != null)
 	        {
-	            CalculateJewels();
+	            if (hit.collider.tag == "Jewel")
+	            {
+	                CalculateJewels();
+                }
+                if (hit.collider.tag == "Building")
+	            {
+	                BuyBuilding();
+                }
 	        }
 	    }
     }
 
     void CalculateJewels()
     {
-        Result += State.jewels + (ulong)State.jewelsPerClick;
-        Debug.Log(Result);
+        State.jewels = State.jewels + (ulong)State.jewelsPerClick;
+        Debug.Log(State.jewels);
+    }
+
+    void BuyBuilding()
+    {
+        if (State.jewels >= 5)
+        {
+            State.jewels = State.jewels - 5;
+            State.jewelsPerSecond = State.jewelsPerSecond + 0.1f;
+            Debug.Log(State.jewels + " " + State.jewelsPerSecond);
+        }
     }
 }
