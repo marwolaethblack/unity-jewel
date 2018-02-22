@@ -22,8 +22,18 @@ public class State : MonoBehaviour {
         upgrades = new List<GameObject>();
 
     }
+
+    void Start() {
+        InvokeRepeating("IncreaseJewelAmount", 1f, 1f);
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
 	}
+
+    void IncreaseJewelAmount()
+    {
+        jewels = jewels + (ulong)jewelsPerSecond;
+    }
 }

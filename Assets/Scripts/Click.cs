@@ -43,7 +43,7 @@ public class Click : MonoBehaviour
         if (State.jewels >= 5)
         {
             State.jewels = State.jewels - 5;
-            State.jewelsPerSecond = State.jewelsPerSecond + 0.1f;
+            State.jewelsPerSecond = State.jewelsPerSecond + 1f;
             Debug.Log(State.jewels + " " + State.jewelsPerSecond);
         }
     }
