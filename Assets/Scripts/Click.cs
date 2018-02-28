@@ -40,10 +40,11 @@ public class Click : MonoBehaviour
 
     void BuyBuilding()
     {
-        if (State.jewels >= 5)
+        if (State.jewels >= 5 * State.multiplerBuilding)
         {
-            State.jewels = State.jewels - 5;
+            State.jewels = State.jewels - 5 * State.multiplerBuilding;
             State.jewelsPerSecond = State.jewelsPerSecond + 1f;
+            State.multiplerBuilding++;
             Debug.Log(State.jewels + " " + State.jewelsPerSecond);
         }
     }

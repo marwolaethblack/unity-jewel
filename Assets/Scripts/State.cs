@@ -9,6 +9,7 @@ public class State : MonoBehaviour {
     public static List<GameObject> buildings { get; set; }
     public static List<GameObject> upgrades { get; set; }
     public static float jewelsPerClick;
+    public static ulong multiplerBuilding;
 
     
     
@@ -18,6 +19,7 @@ public class State : MonoBehaviour {
         jewels = 0;
         jewelsPerSecond = 0;
 	    jewelsPerClick = 1;
+        multiplerBuilding = 1;
         buildings = new List<GameObject>();
         upgrades = new List<GameObject>();
 

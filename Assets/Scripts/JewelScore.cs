@@ -7,12 +7,14 @@ using UnityEngine.UI;
 public class JewelScore : MonoBehaviour {
 
 
-    public Text _text;
+    private Text _text;
+    private Text _text1;
 
     // Use this for initialization
     void Start()
     {
-        _text = GetComponent<Text>();
+        _text = GameObject.Find("JewelScoreText").GetComponent<Text>();
+        _text1 = GameObject.Find("BuildingPrice1Text").GetComponent<Text>();
     }
 
     // Update is called once per frame
@@ -20,6 +22,10 @@ public class JewelScore : MonoBehaviour {
     {
             string text = "Jewels: " + State.jewels + "\nJewels/s: " + State.jewelsPerSecond;
             _text.text = text;
-        }
+
+            string text1 = "Price: " + 5 * State.multiplerBuilding;
+            _text1.text = text1;
+
+    }
     }
 
