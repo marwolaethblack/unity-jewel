@@ -26,7 +26,8 @@ public class Click : MonoBehaviour
                 }
                 if (hit.collider.tag == "Building")
 	            {
-	                BuyBuilding();
+	                BuyBuilding(hit.collider.name);
+                    Debug.Log(hit.collider.name);
                 }
 	        }
 	    }
@@ -38,14 +39,23 @@ public class Click : MonoBehaviour
         Debug.Log(State.jewels);
     }
 
-    void BuyBuilding()
+   
+
+    void BuyBuilding(string name)
     {
-        if (State.jewels >= 5 * State.multiplerBuilding)
+        var buildingIndex = State.buildings.FindIndex(x => x.name == name);
+
+        if(buildingIndex != -1)
         {
-            State.jewels = State.jewels - 5 * State.multiplerBuilding;
-            State.jewelsPerSecond = State.jewelsPerSecond + 1f;
-            State.multiplerBuilding++;
-            Debug.Log(State.jewels + " " + State.jewelsPerSecond);
+            if (State.jewels >= State.buildings[buildingIndex].basePrice)
+            {
+                State.buildings[buildingIndex].amount++;
+                State.jewels -= (ulong)State.buildings[buildingIndex].basePrice;
+                State.buildings[buildingIndex].basePrice *= State.buildings[buildingIndex].priceIncrease;
+            }
         }
+
+
+        State.calcNewCps();
     }
 }
