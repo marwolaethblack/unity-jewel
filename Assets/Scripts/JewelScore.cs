@@ -23,7 +23,7 @@ public class JewelScore : MonoBehaviour {
             string text = "Jewels: " + State.jewels + "\nJewels/s: " + State.jewelsPerSecond;
             _text.text = text;
 
-            string text1 = "Price: " + 5 * State.multiplerBuilding;
+            string text1 = "Price: " + State.buildings.Find( x=>x.name == "Pointer").basePrice;
             _text1.text = text1;
 
     }
