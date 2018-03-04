@@ -8,13 +8,11 @@ public class JewelScore : MonoBehaviour {
 
 
     private Text _text;
-    private Text _text1;
 
     // Use this for initialization
     void Start()
     {
         _text = GameObject.Find("JewelScoreText").GetComponent<Text>();
-        _text1 = GameObject.Find("BuildingPrice1Text").GetComponent<Text>();
     }
 
     // Update is called once per frame
@@ -22,10 +20,6 @@ public class JewelScore : MonoBehaviour {
     {
             string text = "Jewels: " + State.jewels + "\nJewels/s: " + State.jewelsPerSecond;
             _text.text = text;
-
-            string text1 = "PointerPrice: " + State.buildings.Find( x=>x.name == "Pointer").basePrice;
-            _text1.text = text1;
-
     }
-    }
+}
 
