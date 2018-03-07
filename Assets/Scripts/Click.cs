@@ -54,7 +54,6 @@ public class Click : MonoBehaviour
     void CalculateJewels()
     {
         State.jewels = State.jewels + (ulong)State.jewelsPerClick;
-        Debug.Log(State.jewels);
     }
 
    
