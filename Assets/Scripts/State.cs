@@ -7,7 +7,7 @@ public class State : MonoBehaviour {
     public static ulong jewels;
     public static float jewelsPerSecond;
     public static List<Building> buildings { get; set; }
-    public static List<GameObject> upgrades { get; set; }
+    public static List<Upgrade> upgrades { get; set; }
     public static float jewelsPerClick;
     public static ulong multiplerBuilding;
 
@@ -22,7 +22,9 @@ public class State : MonoBehaviour {
 	    jewelsPerClick = 1;
         multiplerBuilding = 1;
 
-        upgrades = new List<GameObject>();
+        Upgrade PointerUpdate1 = new Upgrade("Stronger Fingers", 25, 500);
+
+        upgrades = new List<Upgrade>();
 
         Building Pointer = new Building("Pointer", 10, 1, 1.15f);
         Building JewelMine = new Building("JewelMine", 500, 10, 1.20f);
