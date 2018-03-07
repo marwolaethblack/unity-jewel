@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class JewelScore : MonoBehaviour {
 
 
-    private Text _text;
+    private Text _text; 
 
     // Use this for initialization
     void Start()

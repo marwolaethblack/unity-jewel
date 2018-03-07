@@ -47,6 +47,10 @@ public class Click : MonoBehaviour
                     BuyBuilding(hit.collider.name);
                     Debug.Log(hit.collider.name);
                 }
+                if (hit.collider.tag == "BuildingsGenerateButton")
+                {
+                    SendMessage("GeneratePanelCards");
+                }
             }
         }
     }
@@ -54,6 +58,7 @@ public class Click : MonoBehaviour
     void CalculateJewels()
     {
         State.jewels = State.jewels + (ulong)State.jewelsPerClick;
+        Debug.Log(State.jewels);
     }
 
    
