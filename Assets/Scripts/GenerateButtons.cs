@@ -24,10 +24,14 @@ public class GenerateButtons : MonoBehaviour
             var PanelCard = Instantiate(Prefab);
             PanelCard.name = building.name;
             GameObject.Find("Text_Product").GetComponent<Text>().text = building.name;
-            GameObject.Find("PanelButton").GetComponent<Button>().GetComponentInChildren<Text>().text = building.basePrice.ToString();
-            GameObject.Find("PanelButton").GetComponent<Button>().name = building.name;
+
+            //Button in PanelCard
+            Button templateButton = GameObject.Find("PanelButton").GetComponent<Button>();
+            templateButton.GetComponentInChildren<Text>().text = building.basePrice.ToString();
+            templateButton.name = building.name;
+
             //Tag for buying building
-            PanelCard.tag = "Building";
+            templateButton.tag = "Building";
 
             //Setting parent for reference
             PanelCard.transform.SetParent(_panelTransform);
@@ -37,13 +41,14 @@ public class GenerateButtons : MonoBehaviour
             PanelCard.transform.localPosition = new Vector3(PanelCard.transform.position.x, PanelCard.transform.position.y, 0);
 
             //Generating BuyBuilding OnClick
-            button.onClick.AddListener(() => BuyBuilding(building.name));
+            templateButton.onClick.AddListener(() => BuyBuilding(building.name));
         }
     }
 
     void BuyBuilding(string name)
     {
-        GameObject.Find(name).GetComponentInChildren<Text>().text = name + " : " + State.buildings.Find(x => x.name == name).basePrice;
+        GameObject.Find(name).GetComponent<Button>().GetComponentInChildren<Text>().text = 
+            name + " : " + State.buildings.Find(x => x.name == name).basePrice;
     }
 
     public void GeneratePanelCards()

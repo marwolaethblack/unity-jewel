@@ -47,10 +47,6 @@ public class Click : MonoBehaviour
                     BuyBuilding(hit.collider.name);
                     Debug.Log(hit.collider.name);
                 }
-                if (hit.collider.tag == "BuildingsGenerateButton")
-                {
-                    SendMessage("GeneratePanelCards");
-                }
             }
         }
     }
@@ -63,7 +59,7 @@ public class Click : MonoBehaviour
 
    
 
-    void BuyBuilding(string name)
+    public static void BuyBuilding(string name)
     {
         var buildingIndex = State.buildings.FindIndex(x => x.name == name);
 

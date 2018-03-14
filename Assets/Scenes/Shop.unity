@@ -494,7 +494,7 @@ GameObject:
   - component: {fileID: 425061457}
   - component: {fileID: 425061460}
   m_Layer: 5
-  m_Name: Button
+  m_Name: BuildingsButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -518,7 +518,7 @@ RectTransform:
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 1, y: 1}
+  m_Pivot: {x: 1, y: 0.7}
 --- !u!114 &425061457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -708,7 +708,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 505273144}
-  - component: {fileID: 556356857}
   m_Layer: 5
   m_Name: HomeScreen
   m_TagString: Untagged
@@ -716,17 +715,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &556356857
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 556356856}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c0b041982203ec43aad6839977593b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &784983068
 GameObject:
   m_ObjectHideFlags: 0
@@ -951,8 +939,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0.000030517578, y: 99.99997}
-  m_SizeDelta: {x: 40, y: 200}
+  m_AnchoredPosition: {x: 0, y: 270}
+  m_SizeDelta: {x: 0, y: 200}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1329008403
 MonoBehaviour:
@@ -1000,6 +988,7 @@ GameObject:
   - component: {fileID: 1423768617}
   - component: {fileID: 1423768616}
   - component: {fileID: 1423768615}
+  - component: {fileID: 1423768619}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1084,6 +1073,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1423768619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1423768614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c0b041982203ec43aad6839977593b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1675108668
 GameObject:
   m_ObjectHideFlags: 0
@@ -1566,7 +1566,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 160}
+  m_SizeDelta: {x: 0, y: 250}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2106209197
 MonoBehaviour:
@@ -1588,7 +1588,7 @@ MonoBehaviour:
   m_ChildAlignment: 7
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 350, y: 80}
+  m_CellSize: {x: 400, y: 150}
   m_Spacing: {x: 20, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2

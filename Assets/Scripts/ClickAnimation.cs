@@ -27,7 +27,6 @@ public class ClickAnimation : MonoBehaviour {
                 if (hit.collider.name == "Jewel")
                 {
                     anim.Play("JewelClick", -1, 0f);                    
-
                 }
 
             }
