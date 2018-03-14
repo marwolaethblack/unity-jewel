@@ -24,12 +24,12 @@ public class State : MonoBehaviour {
 
         Upgrade PointerUpdate1 = new Upgrade("Stronger Fingers", 25, 500);
 
-        upgrades = new List<Upgrade>();
+        upgrades = new List<Upgrade>{ PointerUpdate1 };
 
         Building Pointer = new Building("Pointer", 10, 1, 1.15f);
         Building JewelMine = new Building("JewelMine", 500, 10, 1.20f);
 
-        buildings = new List<Building> { Pointer, JewelMine};
+        buildings = new List<Building> { Pointer, JewelMine };
 
 
 

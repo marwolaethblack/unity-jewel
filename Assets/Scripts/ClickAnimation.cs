@@ -23,7 +23,6 @@ public class ClickAnimation : MonoBehaviour {
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
             if (hit.collider != null)
             {
-                Debug.Log(hit.collider.name);
                 if (hit.collider.name == "Jewel")
                 {
                     anim.Play("JewelClick", -1, 0f);                    
