@@ -49,7 +49,6 @@ public class GenerateUpgradesButtons : MonoBehaviour {
                 var PanelCard = Instantiate(Prefab);
                 PanelCard.name = upgrade.name;
                 PanelCard.tag = "Upgrade";
-                GameObject.Find("Text_Product").GetComponent<Text>().text = upgrade.name;
 
                 //Button in PanelCard
                 Button templateButton = GameObject.Find("PanelButton").GetComponent<Button>();
