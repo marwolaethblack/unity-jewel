@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class Click : MonoBehaviour
 {
-	// Use this for initialization
-	void Start ()
-	{
-	}
-	
+    // Use this for initialization
+
+    public ParticleSystem pE;
+    void Start()
+    {
+        pE.Stop();
+
+    }
 	// Update is called once per frame
 	void Update () {
 
@@ -41,11 +44,12 @@ public class Click : MonoBehaviour
                 if (hit.collider.tag == "Jewel")
                 {
                     CalculateJewels();
+                    pE.Play();
+                    Invoke("stopEmmiting", 0.4f);
                 }
                 if (hit.collider.tag == "Building")
                 {
                     BuyBuilding(hit.collider.name);
-                    Debug.Log(hit.collider.name);
                 }
             }
         }
@@ -75,5 +79,10 @@ public class Click : MonoBehaviour
 
 
         State.calcNewCps();
+    }
+
+    public void stopEmmiting()
+    {
+        pE.Stop();
     }
 }
