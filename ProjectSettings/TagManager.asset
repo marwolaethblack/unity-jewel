@@ -9,6 +9,7 @@ TagManager:
   - JewelScore
   - BuildingText
   - BuildingsGenerateButton
+  - Upgrade
   layers:
   - Default
   - TransparentFX

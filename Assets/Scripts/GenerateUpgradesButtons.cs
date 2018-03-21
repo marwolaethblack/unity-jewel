@@ -1,21 +1,20 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GenerateButtons : MonoBehaviour
-{
+public class GenerateUpgradesButtons : MonoBehaviour {
 
     public Transform _panelTransform;
     public GameObject _panelGameObject;
     public GameObject Prefab;
-    public Button buildingsButton;
-    public bool IsActive;
+    public Button upgradeButton;
+    public bool IsActive = false;
 
     void Start()
     {
-        Button button = buildingsButton.GetComponent<Button>();
+        Button button = upgradeButton.GetComponent<Button>();
         button.onClick.AddListener(GeneratePanelCards);
     }
 
@@ -25,16 +24,16 @@ public class GenerateButtons : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
-        //IsActive = !IsActive;
-        //_panelGameObject.SetActive(false);
         _panelGameObject.SetActive(!_panelGameObject.activeSelf);
         IsActive = _panelGameObject.activeSelf;
+        //IsActive = !IsActive;
+        //_panelGameObject.SetActive(false);
 
         if (IsActive)
         {
             //foreach (Transform child in _panelTransform)
             //{
-            //    if (child.tag == "Building")
+            //    if (child.tag == "Upgrade")
             //    {
             //        child.gameObject.SetActive(true);
             //    }
@@ -43,22 +42,22 @@ public class GenerateButtons : MonoBehaviour
             //        child.gameObject.SetActive(false);
             //    }
             //}
-            foreach (var building in State.buildings)
+
+            foreach (var upgrade in State.upgrades)
             {
                 //Assigning button prefab to use for generating buttons
                 var PanelCard = Instantiate(Prefab);
-                PanelCard.name = building.name;
-                PanelCard.tag = "Building";
-                PanelCard.GetComponentInChildren<Text>().text = building.name;
-                //GameObject.Find("Text_Product").GetComponent<Text>().text = building.name;
+                PanelCard.name = upgrade.name;
+                PanelCard.tag = "Upgrade";
+                GameObject.Find("Text_Product").GetComponent<Text>().text = upgrade.name;
 
                 //Button in PanelCard
                 Button templateButton = GameObject.Find("PanelButton").GetComponent<Button>();
-                templateButton.GetComponentInChildren<Text>().text = building.basePrice + " jewels";
-                templateButton.name = building.name;
+                templateButton.GetComponentInChildren<Text>().text = upgrade.price.ToString();
+                templateButton.name = upgrade.name;
 
                 //Tag for buying building
-                templateButton.tag = "Building";
+                templateButton.tag = "Upgrade";
 
                 //Setting parent for reference
                 PanelCard.transform.SetParent(_panelTransform);
@@ -66,22 +65,13 @@ public class GenerateButtons : MonoBehaviour
                 //Properly positioning the buttons
                 PanelCard.transform.localScale = new Vector3(0.9f, 0.9f, 0.9f);
                 PanelCard.transform.localPosition = new Vector3(PanelCard.transform.position.x, PanelCard.transform.position.y, 0);
-
-                //Generating BuyBuilding OnClick
-                templateButton.onClick.AddListener(() => BuyBuilding(building.name, templateButton));
             }
+
             _panelGameObject.SetActive(true);
         }
         else
         {
             _panelGameObject.SetActive(false);
         }
-    }
-
-    void BuyBuilding(string name, Button button)
-    {
-        button.GetComponentInChildren<Text>().text = name + " : " + State.buildings.Find(x => x.name == name).basePrice;
-        //GameObject.Find(name).GetComponent<Button>().GetComponentInChildren<Text>().text =
-        //    name + " : " + State.buildings.Find(x => x.name == name).basePrice;
     }
 }
