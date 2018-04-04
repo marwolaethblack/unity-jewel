@@ -23,7 +23,7 @@ public class State : MonoBehaviour {
 	    jewelsPerClick = 1;
         multiplerBuilding = 1;
 
-        Upgrade PointerUpdate1 = new Upgrade("Stronger Fingers", 25, 500);
+        Upgrade PointerUpdate1 = new Upgrade("Stronger Fingers", 25, 5, 1.2f, "Pointer");
 
         upgrades = new List<Upgrade>{ PointerUpdate1 };
 
@@ -59,6 +59,11 @@ public class State : MonoBehaviour {
         foreach (var build in buildings)
         {
             newJps += (build.amount * build.jps);
+            foreach (Upgrade builtUpgrade in build.upgrades)
+            {
+                newJps *= builtUpgrade.multi;
+            }
+
             Debug.Log(newJps);
         }
 

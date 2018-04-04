@@ -6,7 +6,7 @@ public class Building {
 
     public Building(string n, float bp, float jps, float pi)
     {
-        this.upgrades = new List<GameObject>();
+        this.upgrades = new List<Upgrade>();
         this.name = n;
         this.basePrice = bp;
         this.jps = jps;
@@ -23,7 +23,7 @@ public class Building {
     public float priceIncrease { get; set; }
     public float jps { get; set; }
 
-    public List<GameObject> upgrades { get; set; }
+    public List<Upgrade> upgrades { get; set; }
 
 }
 

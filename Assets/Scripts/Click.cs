@@ -36,6 +36,10 @@ public class Click : MonoBehaviour
                     Debug.Log(hit.collider.name);
                     BuyBuilding(hit.collider.name);
                 }
+                if (hit.collider.tag == "Upgrade")
+                {
+                    BuyUpgrade(hit.collider.name);
+                }
             }
         }
     }
@@ -65,6 +69,31 @@ public class Click : MonoBehaviour
                     if (building.name == name)
                     {
                         building.GetComponentInChildren<Text>().text = State.buildings[buildingIndex].name + " : " + (int)State.buildings[buildingIndex].basePrice;
+                    }
+                }
+            }
+        }
+        State.calcNewCps();
+    }
+
+    void BuyUpgrade(string name)
+    {
+        var upgradeIndex = State.upgrades.FindIndex(x => x.name == name);
+
+        if (upgradeIndex != -1)
+        {
+            if (State.jewels >= State.upgrades[upgradeIndex].price)
+            {
+                State.jewels -= (ulong)State.upgrades[upgradeIndex].price;
+
+                foreach (GameObject upgrade in GameObject.FindGameObjectsWithTag("Upgrade"))
+                {
+                    if (upgrade.name == name)
+                    {
+                        Building foundBuilding =
+                            State.buildings.Find(x => x.name == State.upgrades[upgradeIndex].requiredBuilding);
+                        foundBuilding.upgrades.Add(State.upgrades[upgradeIndex]);
+                        upgrade.GetComponentInChildren<Text>().text = State.upgrades[upgradeIndex].name + " : " + (int)State.upgrades[upgradeIndex].price;
                     }
                 }
             }
