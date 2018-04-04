@@ -58,17 +58,18 @@ public class Click : MonoBehaviour
 
         if(buildingIndex != -1)
         {
-            if (State.jewels >= State.buildings[buildingIndex].basePrice)
+            var foundBuilding = State.buildings[buildingIndex];
+            if (State.jewels >= foundBuilding.basePrice)
             {
-                State.buildings[buildingIndex].amount++;
-                State.jewels -= (ulong)State.buildings[buildingIndex].basePrice;
-                State.buildings[buildingIndex].basePrice *= State.buildings[buildingIndex].priceIncrease;
+                foundBuilding.amount++;
+                State.jewels -= (ulong)foundBuilding.basePrice;
+                State.buildings[buildingIndex].basePrice *= foundBuilding.priceIncrease;
 
                 foreach (GameObject building in GameObject.FindGameObjectsWithTag("Building"))
                 {
                     if (building.name == name)
                     {
-                        building.GetComponentInChildren<Text>().text = State.buildings[buildingIndex].name + " : " + (int)State.buildings[buildingIndex].basePrice;
+                        building.GetComponentInChildren<Text>().text = foundBuilding.name + " : " + (int)foundBuilding.basePrice;
                     }
                 }
             }
@@ -80,20 +81,22 @@ public class Click : MonoBehaviour
     {
         var upgradeIndex = State.upgrades.FindIndex(x => x.name == name);
 
+
         if (upgradeIndex != -1)
         {
-            if (State.jewels >= State.upgrades[upgradeIndex].price)
+            var foundUpgrade = State.upgrades[upgradeIndex];
+            if (State.jewels >= foundUpgrade.price)
             {
-                State.jewels -= (ulong)State.upgrades[upgradeIndex].price;
+                State.jewels -= (ulong)foundUpgrade.price;
 
                 foreach (GameObject upgrade in GameObject.FindGameObjectsWithTag("Upgrade"))
                 {
                     if (upgrade.name == name)
                     {
                         Building foundBuilding =
-                            State.buildings.Find(x => x.name == State.upgrades[upgradeIndex].requiredBuilding);
-                        foundBuilding.upgrades.Add(State.upgrades[upgradeIndex]);
-                        upgrade.GetComponentInChildren<Text>().text = State.upgrades[upgradeIndex].name + " : " + (int)State.upgrades[upgradeIndex].price;
+                            State.buildings.Find(x => x.name == foundUpgrade.requiredBuilding);
+                        foundBuilding.upgrades.Add(foundUpgrade);
+                        upgrade.GetComponentInChildren<Text>().text = foundUpgrade.name + " : " + (int)foundUpgrade.price;
                     }
                 }
             }

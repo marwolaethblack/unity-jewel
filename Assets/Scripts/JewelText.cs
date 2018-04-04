@@ -13,6 +13,6 @@ public class JewelText : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        txt.text = State.jewels + " jewels\n" +"per second: " + State.jewelsPerSecond;
+        txt.text = State.jewels + " jewels\n" +"per second: " + 10*State.jewelsPerSecond;
 	}
 }

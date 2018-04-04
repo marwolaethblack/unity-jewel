@@ -286,7 +286,6 @@ GameObject:
   - component: {fileID: 425061459}
   - component: {fileID: 425061458}
   - component: {fileID: 425061457}
-  - component: {fileID: 425061460}
   m_Layer: 5
   m_Name: BuildingsButton
   m_TagString: Untagged
@@ -387,22 +386,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 425061455}
---- !u!114 &425061460
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 425061455}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5335c8c414e5f34f962f87da1570248, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _panelTransform: {fileID: 16249206}
-  _panelGameObject: {fileID: 16249205}
-  Prefab: {fileID: 1311323921032412, guid: 5f7cc8ddb9b083d44ac94a4715b9707c, type: 2}
-  buildingsButton: {fileID: 425061457}
-  IsActive: 0
 --- !u!1 &473245689
 GameObject:
   m_ObjectHideFlags: 0
@@ -647,7 +630,6 @@ GameObject:
   - component: {fileID: 923959229}
   - component: {fileID: 923959228}
   - component: {fileID: 923959227}
-  - component: {fileID: 923959226}
   m_Layer: 5
   m_Name: UpgradesButton
   m_TagString: Untagged
@@ -674,22 +656,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 1, y: 0.5}
---- !u!114 &923959226
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 923959224}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b825684accbf42044a36627727bd9fdb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _panelTransform: {fileID: 16249206}
-  _panelGameObject: {fileID: 16249205}
-  Prefab: {fileID: 1311323921032412, guid: 5f7cc8ddb9b083d44ac94a4715b9707c, type: 2}
-  upgradeButton: {fileID: 923959227}
-  IsActive: 0
 --- !u!114 &923959227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -952,7 +918,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.31255406, g: 0.75746775, b: 0.9044118, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1081,6 +1047,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c0b041982203ec43aad6839977593b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _panelGameObject: {fileID: 16249205}
   pE: {fileID: 1501661669}
 --- !u!1 &1501661666
 GameObject:
@@ -1226,7 +1193,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -2003928112
+  randomSeed: -728216316
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -4943,6 +4910,7 @@ GameObject:
   - component: {fileID: 2106209199}
   - component: {fileID: 2106209198}
   - component: {fileID: 2106209197}
+  - component: {fileID: 2106209200}
   m_Layer: 5
   m_Name: Tab Panel
   m_TagString: Untagged
@@ -5030,3 +4998,21 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2106209195}
+--- !u!114 &2106209200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2106209195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 297551e11efa7444cb1ed39ab40a4c8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _panelTransform: {fileID: 16249206}
+  _panelGameObject: {fileID: 16249205}
+  Prefab: {fileID: 1311323921032412, guid: 5f7cc8ddb9b083d44ac94a4715b9707c, type: 2}
+  buildingsButton: {fileID: 425061457}
+  upgradeButton: {fileID: 923959227}
+  buildingsActive: 0
+  upgradesActive: 0

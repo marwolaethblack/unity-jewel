@@ -39,7 +39,7 @@ public class State : MonoBehaviour {
     }
 
     void Start() {
-        InvokeRepeating("IncreaseJewelAmount", 1f, 1f);
+        InvokeRepeating("IncreaseJewelAmount", 1f, 0.1f);
         SceneManager.LoadScene("Shop");
     }
 	
