@@ -28,9 +28,11 @@ public class State : MonoBehaviour {
         upgrades = new List<Upgrade>{ PointerUpdate1 };
 
         Building Pointer = new Building("Pointer", 10, 1, 1.15f);
+	    Building JewelGrandma = new Building("JewelGrandmas", 100, 3, 1.15f);
         Building JewelMine = new Building("JewelMine", 500, 10, 1.20f);
+	    Building JewelFactory = new Building("JewelFactory", 2000, 80, 1.20f);
 
-        buildings = new List<Building> { Pointer, JewelMine };
+        buildings = new List<Building> { Pointer, JewelGrandma, JewelMine, JewelFactory };
 
 
 
