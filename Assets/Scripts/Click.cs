@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Click : MonoBehaviour
 {
     // Use this for initialization
-
+    public GameObject _panelGameObject;
     public ParticleSystem pE;
     void Start()
     {
@@ -17,24 +19,6 @@ public class Click : MonoBehaviour
 
 	    if (Input.GetMouseButtonDown(0))
 	    {
-            //RaycastHit hitPoint;
-            //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            //if (Physics.Raycast(ray, out hitPoint, Mathf.Infinity))
-            //{
-            //    if (hitPoint.collider.tag == "Jewel")
-            //    {
-            //        CalculateJewels();
-            //    }
-
-            //    if (hitPoint.collider.tag == "Building")
-            //    {
-            //        BuyBuilding(hitPoint.collider.name);
-            //        Debug.Log(hitPoint.collider.name);
-            //       }
-            //   }
-
-
-
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
 
@@ -49,6 +33,7 @@ public class Click : MonoBehaviour
                 }
                 if (hit.collider.tag == "Building")
                 {
+                    Debug.Log(hit.collider.name);
                     BuyBuilding(hit.collider.name);
                 }
             }
@@ -63,7 +48,7 @@ public class Click : MonoBehaviour
 
    
 
-    public static void BuyBuilding(string name)
+    void BuyBuilding(string name)
     {
         var buildingIndex = State.buildings.FindIndex(x => x.name == name);
 
@@ -74,10 +59,16 @@ public class Click : MonoBehaviour
                 State.buildings[buildingIndex].amount++;
                 State.jewels -= (ulong)State.buildings[buildingIndex].basePrice;
                 State.buildings[buildingIndex].basePrice *= State.buildings[buildingIndex].priceIncrease;
+
+                foreach (GameObject building in GameObject.FindGameObjectsWithTag("Building"))
+                {
+                    if (building.name == name)
+                    {
+                        building.GetComponentInChildren<Text>().text = State.buildings[buildingIndex].name + " : " + (int)State.buildings[buildingIndex].basePrice;
+                    }
+                }
             }
         }
-
-
         State.calcNewCps();
     }
 

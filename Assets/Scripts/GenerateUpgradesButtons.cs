@@ -10,11 +10,12 @@ public class GenerateUpgradesButtons : MonoBehaviour {
     public GameObject _panelGameObject;
     public GameObject Prefab;
     public Button upgradeButton;
-    public bool IsActive = false;
+    public bool IsActive;
 
     void Start()
     {
         Button button = upgradeButton.GetComponent<Button>();
+        IsActive = false;
         button.onClick.AddListener(GeneratePanelCards);
     }
 
@@ -26,22 +27,9 @@ public class GenerateUpgradesButtons : MonoBehaviour {
         }
         _panelGameObject.SetActive(!_panelGameObject.activeSelf);
         IsActive = _panelGameObject.activeSelf;
-        //IsActive = !IsActive;
-        //_panelGameObject.SetActive(false);
 
         if (IsActive)
         {
-            //foreach (Transform child in _panelTransform)
-            //{
-            //    if (child.tag == "Upgrade")
-            //    {
-            //        child.gameObject.SetActive(true);
-            //    }
-            //    else
-            //    {
-            //        child.gameObject.SetActive(false);
-            //    }
-            //}
 
             foreach (var upgrade in State.upgrades)
             {
@@ -49,14 +37,8 @@ public class GenerateUpgradesButtons : MonoBehaviour {
                 var PanelCard = Instantiate(Prefab);
                 PanelCard.name = upgrade.name;
                 PanelCard.tag = "Upgrade";
+                PanelCard.GetComponentInChildren<Text>().text = upgrade.name + " : " + upgrade.price;
 
-                //Button in PanelCard
-                Button templateButton = GameObject.Find("PanelButton").GetComponent<Button>();
-                templateButton.GetComponentInChildren<Text>().text = upgrade.price.ToString();
-                templateButton.name = upgrade.name;
-
-                //Tag for buying building
-                templateButton.tag = "Upgrade";
 
                 //Setting parent for reference
                 PanelCard.transform.SetParent(_panelTransform);
