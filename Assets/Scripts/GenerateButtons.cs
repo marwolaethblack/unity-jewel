@@ -16,6 +16,7 @@ public class GenerateButtons : MonoBehaviour
     void Start()
     {
         Button button = buildingsButton.GetComponent<Button>();
+        IsActive = false;
         button.onClick.AddListener(GeneratePanelCards);
     }
 
@@ -32,17 +33,6 @@ public class GenerateButtons : MonoBehaviour
 
         if (IsActive)
         {
-            //foreach (Transform child in _panelTransform)
-            //{
-            //    if (child.tag == "Building")
-            //    {
-            //        child.gameObject.SetActive(true);
-            //    }
-            //    else
-            //    {
-            //        child.gameObject.SetActive(false);
-            //    }
-            //}
             foreach (var building in State.buildings)
             {
                 //Assigning button prefab to use for generating buttons
@@ -54,7 +44,7 @@ public class GenerateButtons : MonoBehaviour
 
                 //Button in PanelCard
                 Button templateButton = GameObject.Find("PanelButton").GetComponent<Button>();
-                templateButton.GetComponentInChildren<Text>().text = building.basePrice + " jewels";
+                templateButton.GetComponentInChildren<Text>().text = building.name + " : " + (int)building.basePrice;
                 templateButton.name = building.name;
 
                 //Tag for buying building
@@ -80,8 +70,6 @@ public class GenerateButtons : MonoBehaviour
 
     void BuyBuilding(string name, Button button)
     {
-        button.GetComponentInChildren<Text>().text = name + " : " + State.buildings.Find(x => x.name == name).basePrice;
-        //GameObject.Find(name).GetComponent<Button>().GetComponentInChildren<Text>().text =
-        //    name + " : " + State.buildings.Find(x => x.name == name).basePrice;
+        button.GetComponentInChildren<Text>().text = name + " : " + (int)State.buildings.Find(x => x.name == name).basePrice;
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class State : MonoBehaviour {
 
@@ -37,7 +38,7 @@ public class State : MonoBehaviour {
 
     void Start() {
         InvokeRepeating("IncreaseJewelAmount", 1f, 1f);
-
+        SceneManager.LoadScene("Shop");
     }
 	
 	// Update is called once per frame
