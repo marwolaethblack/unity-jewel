@@ -18,34 +18,48 @@ public class State : MonoBehaviour {
     public static float clickMultiplier;
     private static float lifetimejewels;
 
-
-    
-    
-
 	// Use this for initialization
 	void Awake() {
-        jewels = 0;
-        jewelsPerSecond = 0;
-	    jewelsPerClick = 1;
-        multiplier = 1;
-	    clickMultiplier = 1;
+        StateSaver s = new StateSaver();
+        StateSaver.GameData gd = new StateSaver.GameData();
+	    gd = s.Load();
+	    if (gd != null)
+	    {
+	        jewels = gd.jewels;
+	        jewelsPerSecond = gd.jewelsPerSecond;
+	        jewelsPerClick = gd.jewelsPerClick;
+	        multiplier = gd.multiplier;
+	        clickMultiplier = gd.clickMultiplier;
+	        buildings = gd.buildings;
+	        upgrades = gd.upgrades;
+	        events = gd.events;
+	        lifetimejewels = gd.lifetimejewels;
+	    }
+	    else
+	    {
+	        jewels = 0;
+	        jewelsPerSecond = 0;
+	        jewelsPerClick = 1;
+	        multiplier = 1;
+	        clickMultiplier = 1;
 
-        Upgrade PointerUpdate1 = new Upgrade("Stronger Fingers", 5, 1.2f, "Pointer");
-        Upgrade JewelGrandmaUpgrade1 = new Upgrade("Cheat Grandmas", 5, 10000f, "JewelGrandma");
+	        Upgrade PointerUpdate1 = new Upgrade("Stronger Fingers", 5, 1.2f, "Pointer");
+	        Upgrade JewelGrandmaUpgrade1 = new Upgrade("Cheat Grandmas", 5, 10000f, "JewelGrandma");
 
-        upgrades = new List<Upgrade>{ PointerUpdate1, JewelGrandmaUpgrade1 };
+	        upgrades = new List<Upgrade> { PointerUpdate1, JewelGrandmaUpgrade1 };
 
-        Building Pointer = new Building("Pointer", 10, 0.1f, 1.15f);
-	    Building JewelGrandma = new Building("JewelGrandma", 100, 3, 1.15f);
-        Building JewelMine = new Building("JewelMine", 500, 10, 1.20f);
-	    Building JewelFactory = new Building("JewelFactory", 2000, 80, 1.20f);
+	        Building Pointer = new Building("Pointer", 10, 0.1f, 1.15f);
+	        Building JewelGrandma = new Building("JewelGrandma", 100, 3, 1.15f);
+	        Building JewelMine = new Building("JewelMine", 500, 10, 1.20f);
+	        Building JewelFactory = new Building("JewelFactory", 2000, 80, 1.20f);
 
-        buildings = new List<Building> { Pointer, JewelGrandma, JewelMine, JewelFactory };
+	        buildings = new List<Building> { Pointer, JewelGrandma, JewelMine, JewelFactory };
 
-        JewelEvent Event1 = new JewelEvent("Double Jewels", 1, 1, 2, 0, 10);
-        JewelEvent ClickMultiEvent = new JewelEvent("8x jewels\nper tap", 0, 8, 5, 20, 10);
+	        JewelEvent DoubleJewelsEvent = new JewelEvent("Double Jewels", 1, 1, 20, 0.5f, 500);
+	        JewelEvent ClickMultiEvent = new JewelEvent("8x jewels\nper tap", 0, 8, 10, 0.3f, 1000);
 
-        events = new List<JewelEvent> { Event1, ClickMultiEvent };
+	        events = new List<JewelEvent> { DoubleJewelsEvent, ClickMultiEvent };
+        }
     }
 
     void Start() {
@@ -101,6 +115,17 @@ public class State : MonoBehaviour {
         if (newJps / 20 > 1)
         {
             jewelsPerClick = newJps / 20;
+        }
+    }
+
+    void OnApplicationPause(bool pauseStatus)
+    {
+        if (pauseStatus)
+        {
+            StateSaver s = new StateSaver();
+            StateSaver.GameData gd = new StateSaver.GameData(jewels, jewelsPerSecond, buildings, upgrades, 
+                events, jewelsPerClick, multiplier, clickMultiplier, lifetimejewels);
+            s.Save(gd);
         }
     }
 }

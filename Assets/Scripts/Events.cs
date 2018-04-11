@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public class JewelEvent
 {
     public JewelEvent(string n, float mp, float cmp, uint dur, float prob, ulong thr)
