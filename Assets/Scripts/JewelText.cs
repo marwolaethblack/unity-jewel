@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class JewelText : MonoBehaviour {
+
     public Text txt;
 
 	// Use this for initialization
@@ -12,7 +13,8 @@ public class JewelText : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-        txt.text = State.jewels + " jewels\n" +"per second: " + 10*State.jewelsPerSecond;
+	void Update ()
+    {
+        txt.text = (ulong)State.jewels + " jewels\n" +"per second: " + 10*State.jewelsPerSecond*State.multiplier;
 	}
 }

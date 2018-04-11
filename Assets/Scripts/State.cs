@@ -1,16 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class State : MonoBehaviour {
 
-    public static ulong jewels;
+    public static float jewels;
     public static float jewelsPerSecond;
     public static List<Building> buildings { get; set; }
     public static List<Upgrade> upgrades { get; set; }
+    public static List<JewelEvent> events { get; set; }
+
     public static float jewelsPerClick;
-    public static ulong multiplerBuilding;
+    public static float multiplier;
+    public static float clickMultiplier;
+    private static float lifetimejewels;
 
 
     
@@ -21,43 +27,66 @@ public class State : MonoBehaviour {
         jewels = 0;
         jewelsPerSecond = 0;
 	    jewelsPerClick = 1;
-        multiplerBuilding = 1;
+        multiplier = 1;
+	    clickMultiplier = 1;
 
-        Upgrade PointerUpdate1 = new Upgrade("Stronger Fingers", 25, 5, 1.2f, "Pointer");
+        Upgrade PointerUpdate1 = new Upgrade("Stronger Fingers", 5, 1.2f, "Pointer");
+        Upgrade JewelGrandmaUpgrade1 = new Upgrade("Cheat Grandmas", 5, 10000f, "JewelGrandma");
 
-        upgrades = new List<Upgrade>{ PointerUpdate1 };
+        upgrades = new List<Upgrade>{ PointerUpdate1, JewelGrandmaUpgrade1 };
 
-        Building Pointer = new Building("Pointer", 10, 1, 1.15f);
-	    Building JewelGrandma = new Building("JewelGrandmas", 100, 3, 1.15f);
+        Building Pointer = new Building("Pointer", 10, 0.1f, 1.15f);
+	    Building JewelGrandma = new Building("JewelGrandma", 100, 3, 1.15f);
         Building JewelMine = new Building("JewelMine", 500, 10, 1.20f);
 	    Building JewelFactory = new Building("JewelFactory", 2000, 80, 1.20f);
 
         buildings = new List<Building> { Pointer, JewelGrandma, JewelMine, JewelFactory };
 
+        JewelEvent Event1 = new JewelEvent("Double Jewels", 1, 1, 2, 0, 10);
+        JewelEvent ClickMultiEvent = new JewelEvent("8x jewels\nper tap", 0, 8, 5, 20, 10);
 
-
+        events = new List<JewelEvent> { Event1, ClickMultiEvent };
     }
 
     void Start() {
-        InvokeRepeating("IncreaseJewelAmount", 1f, 0.1f);
+        InvokeRepeating("IncreaseJewel", 1f, 0.1f);
         SceneManager.LoadScene("Shop");
     }
-	
-	// Update is called once per frame
-	void Update () {
-	}
 
-
-
-    void IncreaseJewelAmount()
+    void IncreaseJewel()
     {
-        jewels = jewels + (ulong)jewelsPerSecond;
+        jewels += jewelsPerSecond * multiplier;
+        lifetimejewels += jewelsPerSecond * multiplier;
     }
+
+    public static void TriggerEvent(JewelEvent e)
+    {
+        multiplier += e.multiplier;
+        clickMultiplier += e.clickMultiplier;
+        Thread t = new Thread(() =>
+        {
+            Thread.Sleep((int)e.duration * 1000);
+            multiplier -= e.multiplier;
+            clickMultiplier -= e.clickMultiplier;
+        });
+        t.Start();
+    }
+
+    public static void CheckNewEvents()
+    {
+        foreach (var e in events)
+        {
+            if (lifetimejewels >= e.threshold)
+            {
+                e.active = true;
+            }
+        }
+    }
+
 
     public static void calcNewCps()
     {
         float newJps = 0;
-
         foreach (var build in buildings)
         {
             newJps += (build.amount * build.jps);
@@ -65,10 +94,13 @@ public class State : MonoBehaviour {
             {
                 newJps *= builtUpgrade.multi;
             }
-
-            Debug.Log(newJps);
         }
-
         jewelsPerSecond = newJps;
+        
+
+        if (newJps / 20 > 1)
+        {
+            jewelsPerClick = newJps / 20;
+        }
     }
 }

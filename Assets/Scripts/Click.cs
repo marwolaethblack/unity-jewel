@@ -7,11 +7,14 @@ using UnityEngine.UI;
 public class Click : MonoBehaviour
 {
     // Use this for initialization
-    public GameObject _panelGameObject;
+    private GameObject _panelGameObject;
     public ParticleSystem pE;
+    private RenderMenuOnClick sn;
     void Start()
     {
         pE.Stop();
+        _panelGameObject = GameObject.FindGameObjectWithTag("PanelCardPanel");
+        sn = _panelGameObject.GetComponent<RenderMenuOnClick>();
 
     }
 	// Update is called once per frame
@@ -46,8 +49,7 @@ public class Click : MonoBehaviour
 
     void CalculateJewels()
     {
-        State.jewels = State.jewels + (ulong)State.jewelsPerClick;
-        Debug.Log(State.jewels);
+        State.jewels += (ulong)State.jewelsPerClick * State.clickMultiplier;
     }
 
    
@@ -69,7 +71,7 @@ public class Click : MonoBehaviour
                 {
                     if (building.name == name)
                     {
-                        building.GetComponentInChildren<Text>().text = foundBuilding.name + " : " + (int)foundBuilding.basePrice;
+                        building.GetComponentInChildren<Text>().text = "Buy " + foundBuilding.name + " :\n " + (int)foundBuilding.basePrice;
                     }
                 }
             }
@@ -96,7 +98,12 @@ public class Click : MonoBehaviour
                         Building foundBuilding =
                             State.buildings.Find(x => x.name == foundUpgrade.requiredBuilding);
                         foundBuilding.upgrades.Add(foundUpgrade);
-                        upgrade.GetComponentInChildren<Text>().text = foundUpgrade.name + " : " + (int)foundUpgrade.price;
+                        upgrade.GetComponentInChildren<Text>().text = "Buy " + foundUpgrade.name + " :\n " + (int)foundUpgrade.price;
+
+                        //Delete upgrade
+                        State.upgrades.Remove(foundUpgrade);
+                        sn.DestroyPanelCards();
+                        sn.GenerateUpgradesPanelCards();
                     }
                 }
             }

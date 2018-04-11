@@ -72,7 +72,7 @@ public class RenderMenuOnClick : MonoBehaviour {
             var PanelCard = Instantiate(Prefab);
             PanelCard.name = upgrade.name;
             PanelCard.tag = "Upgrade";
-            PanelCard.GetComponentInChildren<Text>().text = upgrade.name + " : " + upgrade.price;
+            PanelCard.GetComponentInChildren<Text>().text = "Buy " + upgrade.name + " :\n " + (int)upgrade.price;
 
 
             //Setting parent for reference
@@ -91,7 +91,7 @@ public class RenderMenuOnClick : MonoBehaviour {
             var PanelCard = Instantiate(Prefab);
             PanelCard.name = building.name;
             PanelCard.tag = "Building";
-            PanelCard.GetComponentInChildren<Text>().text = building.name + " : " + building.basePrice;
+            PanelCard.GetComponentInChildren<Text>().text = "Buy 1 " + building.name + " :\n " + (int)building.basePrice;
 
             //Setting parent for reference
             PanelCard.transform.SetParent(_panelTransform);
