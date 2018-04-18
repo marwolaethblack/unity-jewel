@@ -15,13 +15,15 @@ public class Upgrade {
     public float multi { get; set; }
 
     public string description;
+    public int requiredBuildingAmount { get; set; }
 
-    public Upgrade(string n, uint p, float m, string rB, string de)
+    public Upgrade(string n, uint p, float m, string rB, string de, int rBA)
     {
         this.name = n;
         this.price = p;
         this.multi = m;
         this.requiredBuilding = rB;
         this.description = de;
+        this.requiredBuildingAmount = rBA;
     }
 }

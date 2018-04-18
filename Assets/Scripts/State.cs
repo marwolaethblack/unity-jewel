@@ -45,10 +45,11 @@ public class State : MonoBehaviour {
 	        multiplier = 1;
 	        clickMultiplier = 1;
 
-	        Upgrade PointerUpdate1 = new Upgrade("Stronger Fingers", 5, 1.2f, "Pointer", "Increases jps from Pointers by 20%");
-	        Upgrade JewelGrandmaUpgrade1 = new Upgrade("Cheat Grandmas", 5, 10000f, "JewelGrandma", "Increases jps from JewelGrandmas by 10000%");
+            Upgrade BasicUpgrade = new Upgrade("Basic Upgrade", 50, 1.5f, "Pointer", "Makes you the very best", 0);
+	        Upgrade StrongerFingers = new Upgrade("Stronger Fingers", 5, 1.2f, "Pointer", "Increases jps from Pointers by 20%", 5);
+	        Upgrade CheatGrandmas = new Upgrade("Cheat Grandmas", 5, 10000f, "JewelGrandma", "Grandmas become OP OP by 10000%", 1);
 
-	        upgrades = new List<Upgrade> { PointerUpdate1, JewelGrandmaUpgrade1 };
+	        upgrades = new List<Upgrade> { BasicUpgrade, StrongerFingers, CheatGrandmas };
 
 	        Building Pointer = new Building("Pointer", 10, 0.1f, 1.15f, buildingPath + "topaz");
 	        Building JewelGrandma = new Building("JewelGrandma", 100, 0.5f, 1.3f, buildingPath + "emerald");
@@ -60,8 +61,8 @@ public class State : MonoBehaviour {
 
 	        buildings = new List<Building> { Pointer, JewelGrandma, JewelFarm,  JewelMine, JewelFactory, JewelBank };
 
-	        JewelEvent DoubleJewelsEvent = new JewelEvent("Double Jewels", 1, 1, 20, 0.5f, 500);
-	        JewelEvent ClickMultiEvent = new JewelEvent("8x jewels\nper tap", 0, 8, 10, 0.3f, 1000);
+	        JewelEvent DoubleJewelsEvent = new JewelEvent("Double Jewels", 1, 1, 20, 20f, 500);
+	        JewelEvent ClickMultiEvent = new JewelEvent("8x jewels\nper tap", 0, 8, 10, 20f, 1000);
 
 	        events = new List<JewelEvent> { DoubleJewelsEvent, ClickMultiEvent };
         }
