@@ -44,18 +44,17 @@ public class StateSaver
     public void Save(GameData gd)
     {
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Open(Application.persistentDataPath + "/FileName.dat", FileMode.Create);
+        FileStream file = File.Open(Application.persistentDataPath + "/Save.dat", FileMode.Create);
         bf.Serialize(file, gd);
         file.Close();
     }
 
     public GameData Load()
     {
-
-        if (File.Exists(Application.persistentDataPath + "/FileName.dat"))
+        if (File.Exists(Application.persistentDataPath + "/Save.dat"))
         {
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/FileName.dat", FileMode.Open);
+            FileStream file = File.Open(Application.persistentDataPath + "/Save.dat", FileMode.Open);
             GameData newData = (GameData)bf.Deserialize(file);
             file.Close();
             return newData;

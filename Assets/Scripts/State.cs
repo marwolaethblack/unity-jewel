@@ -18,7 +18,6 @@ public class State : MonoBehaviour {
     public static float clickMultiplier;
     private static float lifetimejewels;
     private const string buildingPath = "Sprites/Buildings/";
-    private const string upgradePath = "Sprites/Upgrades/";
 
 
 	// Use this for initialization
@@ -46,8 +45,8 @@ public class State : MonoBehaviour {
 	        multiplier = 1;
 	        clickMultiplier = 1;
 
-	        Upgrade PointerUpdate1 = new Upgrade("Stronger Fingers", 5, 1.2f, "Pointer", upgradePath + "building");
-	        Upgrade JewelGrandmaUpgrade1 = new Upgrade("Cheat Grandmas", 5, 10000f, "JewelGrandma", upgradePath + "upgrade");
+	        Upgrade PointerUpdate1 = new Upgrade("Stronger Fingers", 5, 1.2f, "Pointer", "Increases jps from Pointers by 20%");
+	        Upgrade JewelGrandmaUpgrade1 = new Upgrade("Cheat Grandmas", 5, 10000f, "JewelGrandma", "Increases jps from JewelGrandmas by 10000%");
 
 	        upgrades = new List<Upgrade> { PointerUpdate1, JewelGrandmaUpgrade1 };
 
