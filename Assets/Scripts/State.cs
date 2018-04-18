@@ -51,11 +51,11 @@ public class State : MonoBehaviour {
 
 	        upgrades = new List<Upgrade> { BasicUpgrade, StrongerFingers, CheatGrandmas };
 
-	        Building Pointer = new Building("Pointer", 10, 0.1f, 1.15f, buildingPath + "topaz");
-	        Building JewelGrandma = new Building("JewelGrandma", 100, 0.5f, 1.3f, buildingPath + "emerald");
-            Building JewelFarm = new Building("JewelFarm", 500, 2.5f, 1.3f, buildingPath + "missingImage");
-	        Building JewelMine = new Building("JewelMine", 3000, 8, 1.4f, buildingPath + "ruby");
-	        Building JewelFactory = new Building("JewelFactory", 15000, 40, 1.5f, buildingPath + "PixelatedJewel1.0");
+	        Building Pointer = new Building("Pointer", 10, 0.1f, 1.15f, buildingPath + "pointer");
+	        Building JewelGrandma = new Building("JewelGrandma", 100, 0.5f, 1.3f, buildingPath + "grandma");
+            Building JewelFarm = new Building("JewelFarm", 500, 2.5f, 1.3f, buildingPath + "jewelfarm");
+	        Building JewelMine = new Building("JewelMine", 3000, 8, 1.4f, buildingPath + "jewelmine");
+	        Building JewelFactory = new Building("JewelFactory", 15000, 40, 1.5f, buildingPath + "jewelfactory");
             Building JewelBank = new Building("JewelBank", 50000, 75, 1.75f, buildingPath + "missingImage");
 
 
