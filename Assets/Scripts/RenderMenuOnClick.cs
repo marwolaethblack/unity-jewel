@@ -69,21 +69,25 @@ public class RenderMenuOnClick : MonoBehaviour {
     {
         foreach (var upgrade in State.upgrades)
         {
-            //Assigning button prefab to use for generating buttons
-            var PanelCard = Instantiate(PrefabUpgrade);
-            PanelCard.name = upgrade.name;
-            PanelCard.tag = "Upgrade";
+            uint foundBuildingAmount = State.buildings.Find(x => x.name == upgrade.requiredBuilding).amount;
+            if (foundBuildingAmount >= upgrade.requiredBuildingAmount)
+            {
+                //Assigning button prefab to use for generating buttons
+                var PanelCard = Instantiate(PrefabUpgrade);
+                PanelCard.name = upgrade.name;
+                PanelCard.tag = "Upgrade";
 
-            Text[] texts = PanelCard.GetComponentsInChildren<Text>();
-            texts[1].text = upgrade.description;
-            texts[0].text = upgrade.name + " :\n " + (int)upgrade.price;
+                Text[] texts = PanelCard.GetComponentsInChildren<Text>();
+                texts[1].text = upgrade.description;
+                texts[0].text = upgrade.name + " :\n " + (int)upgrade.price;
 
-            //Setting parent for reference
-            PanelCard.transform.SetParent(_panelTransform);
+                //Setting parent for reference
+                PanelCard.transform.SetParent(_panelTransform);
 
-            //Properly positioning the buttons
-            PanelCard.transform.localScale = new Vector3(0.9f, 0.9f, 0.9f);
-            PanelCard.transform.localPosition = new Vector3(PanelCard.transform.position.x, PanelCard.transform.position.y, 0);
+                //Properly positioning the buttons
+                PanelCard.transform.localScale = new Vector3(0.9f, 0.9f, 0.9f);
+                PanelCard.transform.localPosition = new Vector3(PanelCard.transform.position.x, PanelCard.transform.position.y, 0);
+            }
         }
     }
     public void GenerateBuildingsPanelCards()
