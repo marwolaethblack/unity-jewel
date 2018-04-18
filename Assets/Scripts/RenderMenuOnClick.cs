@@ -8,7 +8,8 @@ public class RenderMenuOnClick : MonoBehaviour {
     // Use this for initialization
     public Transform _panelTransform;
     public GameObject _panelGameObject;
-    public GameObject Prefab;
+    public GameObject PrefabBuilding;
+    public GameObject PrefabUpgrade;
     public Button buildingsButton;
     public Button upgradeButton;
     public bool buildingsActive;
@@ -69,14 +70,13 @@ public class RenderMenuOnClick : MonoBehaviour {
         foreach (var upgrade in State.upgrades)
         {
             //Assigning button prefab to use for generating buttons
-            var PanelCard = Instantiate(Prefab);
+            var PanelCard = Instantiate(PrefabUpgrade);
             PanelCard.name = upgrade.name;
             PanelCard.tag = "Upgrade";
-            PanelCard.GetComponentInChildren<Text>().text = upgrade.name + " :\n " + (int)upgrade.price;
 
-            //Sprite
-            Sprite image = Resources.Load<Sprite>(upgrade.upgradePath);
-            PanelCard.GetComponentInChildren<SpriteRenderer>().sprite = image;
+            Text[] texts = PanelCard.GetComponentsInChildren<Text>();
+            texts[1].text = upgrade.description;
+            texts[0].text = upgrade.name + " :\n " + (int)upgrade.price;
 
             //Setting parent for reference
             PanelCard.transform.SetParent(_panelTransform);
@@ -91,7 +91,7 @@ public class RenderMenuOnClick : MonoBehaviour {
         foreach (var building in State.buildings)
         {
             //Assigning button prefab to use for generating buttons
-            var PanelCard = Instantiate(Prefab);
+            var PanelCard = Instantiate(PrefabBuilding);
             PanelCard.name = building.name;
             PanelCard.tag = "Building";
             PanelCard.GetComponentInChildren<Text>().text = "1 " + building.name + " :\n " + (int)building.basePrice;
