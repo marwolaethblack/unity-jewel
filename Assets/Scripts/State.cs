@@ -17,6 +17,9 @@ public class State : MonoBehaviour {
     public static float multiplier;
     public static float clickMultiplier;
     private static float lifetimejewels;
+    private const string buildingPath = "Sprites/Buildings/";
+    private const string upgradePath = "Sprites/Upgrades/";
+
 
 	// Use this for initialization
 	void Awake() {
@@ -43,15 +46,15 @@ public class State : MonoBehaviour {
 	        multiplier = 1;
 	        clickMultiplier = 1;
 
-	        Upgrade PointerUpdate1 = new Upgrade("Stronger Fingers", 5, 1.2f, "Pointer");
-	        Upgrade JewelGrandmaUpgrade1 = new Upgrade("Cheat Grandmas", 5, 10000f, "JewelGrandma");
+	        Upgrade PointerUpdate1 = new Upgrade("Stronger Fingers", 5, 1.2f, "Pointer", upgradePath + "building");
+	        Upgrade JewelGrandmaUpgrade1 = new Upgrade("Cheat Grandmas", 5, 10000f, "JewelGrandma", upgradePath + "upgrade");
 
 	        upgrades = new List<Upgrade> { PointerUpdate1, JewelGrandmaUpgrade1 };
 
-	        Building Pointer = new Building("Pointer", 10, 0.1f, 1.15f);
-	        Building JewelGrandma = new Building("JewelGrandma", 100, 3, 1.15f);
-	        Building JewelMine = new Building("JewelMine", 500, 10, 1.20f);
-	        Building JewelFactory = new Building("JewelFactory", 2000, 80, 1.20f);
+	        Building Pointer = new Building("Pointer", 10, 0.1f, 1.15f, buildingPath + "topaz");
+	        Building JewelGrandma = new Building("JewelGrandma", 100, 3, 1.15f, buildingPath + "emerald");
+	        Building JewelMine = new Building("JewelMine", 500, 10, 1.20f, buildingPath + "ruby");
+	        Building JewelFactory = new Building("JewelFactory", 2000, 80, 1.20f, buildingPath + "PixelatedJewel1.0");
 
 	        buildings = new List<Building> { Pointer, JewelGrandma, JewelMine, JewelFactory };
 

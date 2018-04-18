@@ -75,7 +75,8 @@ public class RenderMenuOnClick : MonoBehaviour {
             PanelCard.GetComponentInChildren<Text>().text = upgrade.name + " :\n " + (int)upgrade.price;
 
             //Sprite
-            //PanelCard.GetComponentInChildren<SpriteRenderer>().sprite;
+            Sprite image = Resources.Load<Sprite>(upgrade.upgradePath);
+            PanelCard.GetComponentInChildren<SpriteRenderer>().sprite = image;
 
             //Setting parent for reference
             PanelCard.transform.SetParent(_panelTransform);
@@ -96,7 +97,8 @@ public class RenderMenuOnClick : MonoBehaviour {
             PanelCard.GetComponentInChildren<Text>().text = "1 " + building.name + " :\n " + (int)building.basePrice;
 
             //Sprite
-            //PanelCard.GetComponentInChildren<SpriteRenderer>().sprite;
+            Sprite image = Resources.Load<Sprite>(building.spritePath);
+            PanelCard.GetComponentInChildren<SpriteRenderer>().sprite = image;
 
             //Setting parent for reference
             PanelCard.transform.SetParent(_panelTransform);
