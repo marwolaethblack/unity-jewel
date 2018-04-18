@@ -52,11 +52,14 @@ public class State : MonoBehaviour {
 	        upgrades = new List<Upgrade> { PointerUpdate1, JewelGrandmaUpgrade1 };
 
 	        Building Pointer = new Building("Pointer", 10, 0.1f, 1.15f, buildingPath + "topaz");
-	        Building JewelGrandma = new Building("JewelGrandma", 100, 3, 1.15f, buildingPath + "emerald");
-	        Building JewelMine = new Building("JewelMine", 500, 10, 1.20f, buildingPath + "ruby");
-	        Building JewelFactory = new Building("JewelFactory", 2000, 80, 1.20f, buildingPath + "PixelatedJewel1.0");
+	        Building JewelGrandma = new Building("JewelGrandma", 100, 0.5f, 1.3f, buildingPath + "emerald");
+            Building JewelFarm = new Building("JewelFarm", 500, 2.5f, 1.3f, buildingPath + "missingImage");
+	        Building JewelMine = new Building("JewelMine", 3000, 8, 1.4f, buildingPath + "ruby");
+	        Building JewelFactory = new Building("JewelFactory", 15000, 40, 1.5f, buildingPath + "PixelatedJewel1.0");
+            Building JewelBank = new Building("JewelBank", 50000, 75, 1.75f, buildingPath + "missingImage");
 
-	        buildings = new List<Building> { Pointer, JewelGrandma, JewelMine, JewelFactory };
+
+	        buildings = new List<Building> { Pointer, JewelGrandma, JewelFarm,  JewelMine, JewelFactory, JewelBank };
 
 	        JewelEvent DoubleJewelsEvent = new JewelEvent("Double Jewels", 1, 1, 20, 0.5f, 500);
 	        JewelEvent ClickMultiEvent = new JewelEvent("8x jewels\nper tap", 0, 8, 10, 0.3f, 1000);
