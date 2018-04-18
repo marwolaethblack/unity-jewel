@@ -13,6 +13,8 @@ public class RenderMenuOnClick : MonoBehaviour {
     public Button upgradeButton;
     public bool buildingsActive;
     public bool upgradesActive;
+    public Sprite[] BuildingImages;
+    public Sprite[] UpgradeImages;
 
     void Start()
     {
@@ -26,6 +28,10 @@ public class RenderMenuOnClick : MonoBehaviour {
 
         buildingsActive = false;
         upgradesActive = false;
+
+        //Won't work
+        //BuildingImages = new Sprite[State.buildings.Count];
+        //UpgradeImages = new Sprite[State.upgrades.Count];
     }
 
     public void UpgradesClickHandler()
@@ -66,14 +72,18 @@ public class RenderMenuOnClick : MonoBehaviour {
 
     public void GenerateUpgradesPanelCards()
     {
+        int listPicker = 0;
         foreach (var upgrade in State.upgrades)
         {
             //Assigning button prefab to use for generating buttons
             var PanelCard = Instantiate(Prefab);
             PanelCard.name = upgrade.name;
             PanelCard.tag = "Upgrade";
-            PanelCard.GetComponentInChildren<Text>().text = "Buy " + upgrade.name + " :\n " + (int)upgrade.price;
+            PanelCard.GetComponentInChildren<Text>().text = upgrade.name + " :\n " + (int)upgrade.price;
 
+            //Sprite
+            PanelCard.GetComponentInChildren<SpriteRenderer>().sprite = UpgradeImages[listPicker];
+            listPicker++;
 
             //Setting parent for reference
             PanelCard.transform.SetParent(_panelTransform);
@@ -85,13 +95,18 @@ public class RenderMenuOnClick : MonoBehaviour {
     }
     public void GenerateBuildingsPanelCards()
     {
+        int listPicker = 0;
         foreach (var building in State.buildings)
         {
             //Assigning button prefab to use for generating buttons
             var PanelCard = Instantiate(Prefab);
             PanelCard.name = building.name;
             PanelCard.tag = "Building";
-            PanelCard.GetComponentInChildren<Text>().text = "Buy 1 " + building.name + " :\n " + (int)building.basePrice;
+            PanelCard.GetComponentInChildren<Text>().text = "1 " + building.name + " :\n " + (int)building.basePrice;
+
+            //Sprite
+            PanelCard.GetComponentInChildren<SpriteRenderer>().sprite = BuildingImages[listPicker];
+            listPicker++;
 
             //Setting parent for reference
             PanelCard.transform.SetParent(_panelTransform);
