@@ -71,7 +71,7 @@ public class Click : MonoBehaviour
                 {
                     if (building.name == name)
                     {
-                        building.GetComponentInChildren<Text>().text = "Buy " + foundBuilding.name + " :\n " + (int)foundBuilding.basePrice;
+                        building.GetComponentInChildren<Text>().text = foundBuilding.name + " :\n " + (int)foundBuilding.basePrice;
                     }
                 }
             }
@@ -98,7 +98,7 @@ public class Click : MonoBehaviour
                         Building foundBuilding =
                             State.buildings.Find(x => x.name == foundUpgrade.requiredBuilding);
                         foundBuilding.upgrades.Add(foundUpgrade);
-                        upgrade.GetComponentInChildren<Text>().text = "Buy " + foundUpgrade.name + " :\n " + (int)foundUpgrade.price;
+                        upgrade.GetComponentInChildren<Text>().text = foundUpgrade.name + " :\n " + (int)foundUpgrade.price;
 
                         //Delete upgrade
                         State.upgrades.Remove(foundUpgrade);
