@@ -26,7 +26,6 @@ public class Building {
     public float jps { get; set; }
 
     public List<Upgrade> upgrades { get; set; }
-
 }
 
 
