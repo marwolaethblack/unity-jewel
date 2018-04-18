@@ -14,13 +14,14 @@ public class Upgrade {
 
     public float multi { get; set; }
 
+    public string upgradePath;
 
-    public Upgrade(string n, uint p, float m, string rB)
+    public Upgrade(string n, uint p, float m, string rB, string up)
     {
         this.name = n;
         this.price = p;
         this.multi = m;
         this.requiredBuilding = rB;
-
+        this.upgradePath = up;
     }
 }
