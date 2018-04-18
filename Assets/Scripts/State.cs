@@ -45,11 +45,29 @@ public class State : MonoBehaviour {
 	        multiplier = 1;
 	        clickMultiplier = 1;
 
-            Upgrade BasicUpgrade = new Upgrade("Basic Upgrade", 50, 1.5f, "Pointer", "Makes you the very best", 0);
-	        Upgrade StrongerFingers = new Upgrade("Stronger Fingers", 5, 1.2f, "Pointer", "Increases jps from Pointers by 20%", 5);
-	        Upgrade CheatGrandmas = new Upgrade("Cheat Grandmas", 5, 10000f, "JewelGrandma", "Grandmas become OP OP by 10000%", 1);
+            Upgrade BasicUpgrade = new Upgrade("Basic Upgrade", 50, 1.5f, "Pointer", "Makes Pointers 50% better", 0);
+	        Upgrade PointerUpgrade1 = new Upgrade("Stronger Fingers", 5000, 1.2f, "Pointer", "Makes Pointers 50% better", 25);
+            Upgrade PointerUpgrade2 = new Upgrade("Iron Fingers", 15000, 1.4f, "Pointer", "Makes Pointers 50% better", 50);
+	        Upgrade PointerUpgrade3 = new Upgrade("Tap God", 200000, 2f, "Pointer", "Makes Pointers 100% better", 75);
 
-	        upgrades = new List<Upgrade> { BasicUpgrade, StrongerFingers, CheatGrandmas };
+            Upgrade GrandmaUpgrade1 = new Upgrade("Better Pensions", 5000, 1.5f, "JewelGrandma", "Makes Grandmas 50% better", 25);
+	        Upgrade GrandmaUpgrade2 = new Upgrade("Better Health-Care", 25000, 1.5f, "JewelGrandma", "Makes Grandmas 50% better", 50);
+	        Upgrade GrandmaUpgrade3 = new Upgrade("Golden Inhaler", 250000, 2f, "JewelGrandma", "Makes Grandmas 100% better", 75);
+
+	        Upgrade FarmUpgrade1 = new Upgrade("Stronger Hoes", 10000, 1.5f, "JewelFarm", "Makes Farms 50% better", 25);
+	        Upgrade FarmUpgrade2 = new Upgrade("Better plows", 75000, 1.5f, "JewelFarm", "Makes Farms 50% better", 50);
+	        Upgrade FarmUpgrade3 = new Upgrade("Bejeweled™ Tractor", 750000, 2f, "JewelFarm", "Makes Farms 100% better", 75);
+
+	        Upgrade JewelMineUpgrade1 = new Upgrade("Stone Pickaxe", 50000, 1.5f, "JewelMine", "Makes Mines 50% better", 25);
+	        Upgrade JewelMineUpgrade2 = new Upgrade("Iron Pickaxe", 200000, 1.5f, "JewelMine", "Makes Mines 50% better", 50);
+	        Upgrade JewelMineUpgrade3 = new Upgrade("Diamond Pickaxe", 2000000, 2f, "JewelMine", "Makes Mines 100% better", 75);
+
+            upgrades = new List<Upgrade> { BasicUpgrade,
+                PointerUpgrade1, PointerUpgrade2, PointerUpgrade3,
+                GrandmaUpgrade1, GrandmaUpgrade2, GrandmaUpgrade3,
+                FarmUpgrade1, FarmUpgrade2, FarmUpgrade3,
+                JewelMineUpgrade1, JewelMineUpgrade2, JewelMineUpgrade3,
+            };
 
 	        Building Pointer = new Building("Pointer", 10, 0.1f, 1.15f, buildingPath + "pointer");
 	        Building JewelGrandma = new Building("JewelGrandma", 100, 0.5f, 1.3f, buildingPath + "grandma");
@@ -62,7 +80,7 @@ public class State : MonoBehaviour {
 	        buildings = new List<Building> { Pointer, JewelGrandma, JewelFarm,  JewelMine, JewelFactory, JewelBank };
 
 	        JewelEvent DoubleJewelsEvent = new JewelEvent("Double Jewels", 1, 1, 20, 20f, 500);
-	        JewelEvent ClickMultiEvent = new JewelEvent("8x jewels\nper tap", 0, 8, 10, 20f, 1000);
+	        JewelEvent ClickMultiEvent = new JewelEvent("8x jewels\nper tap", 0, 8, 20, 20f, 1000);
 
 	        events = new List<JewelEvent> { DoubleJewelsEvent, ClickMultiEvent };
         }

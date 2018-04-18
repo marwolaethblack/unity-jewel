@@ -98,7 +98,7 @@ public class RenderMenuOnClick : MonoBehaviour {
             var PanelCard = Instantiate(PrefabBuilding);
             PanelCard.name = building.name;
             PanelCard.tag = "Building";
-            PanelCard.GetComponentInChildren<Text>().text = "1 " + building.name + " :\n " + (int)building.basePrice;
+            PanelCard.GetComponentInChildren<Text>().text = building.name + " :\n " + (int)building.basePrice;
 
             //Sprite
             Sprite image = Resources.Load<Sprite>(building.spritePath);
