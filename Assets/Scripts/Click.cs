@@ -15,6 +15,7 @@ public class Click : MonoBehaviour
         pE.Stop();
         _panelGameObject = GameObject.FindGameObjectWithTag("PanelCardPanel");
         sn = _panelGameObject.GetComponent<RenderMenuOnClick>();
+       
 
     }
 	// Update is called once per frame
@@ -36,7 +37,6 @@ public class Click : MonoBehaviour
                 }
                 if (hit.collider.tag == "Building")
                 {
-                    Debug.Log(hit.collider.name);
                     BuyBuilding(hit.collider.name);
                 }
                 if (hit.collider.tag == "Upgrade")
@@ -71,7 +71,9 @@ public class Click : MonoBehaviour
                 {
                     if (building.name == name)
                     {
-                        building.GetComponentInChildren<Text>().text = foundBuilding.name + " :\n " + (int)foundBuilding.basePrice;
+                        Text[] texts = building.GetComponentsInChildren<Text>();
+                        texts[0].text = foundBuilding.name + " :\n " + (int)foundBuilding.basePrice;
+                        texts[1].text = foundBuilding.amount.ToString();                        
                     }
                 }
             }
