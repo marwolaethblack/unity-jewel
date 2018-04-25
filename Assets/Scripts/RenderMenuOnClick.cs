@@ -70,7 +70,7 @@ public class RenderMenuOnClick : MonoBehaviour {
         foreach (var upgrade in State.upgrades)
         {
             uint foundBuildingAmount = State.buildings.Find(x => x.name == upgrade.requiredBuilding).amount;
-            if (foundBuildingAmount >= upgrade.requiredBuildingAmount)
+            if (foundBuildingAmount >= upgrade.requiredBuildingAmount && State.lifetimejewels >= upgrade.pointsRequired)
             {
                 //Assigning button prefab to use for generating buttons
                 var PanelCard = Instantiate(PrefabUpgrade);
