@@ -99,8 +99,9 @@ public class State : MonoBehaviour {
 
 	        JewelEvent DoubleJewelsEvent = new JewelEvent("Double Jewels", 1, 1, 20, 20f, 500);
 	        JewelEvent ClickMultiEvent = new JewelEvent("8x jewels\nper tap", 0, 8, 20, 20f, 1000);
+            JewelEvent TripleJewelsEvent = new JewelEvent("Triple Jevels!", 2, 1, 20, 10f, 50000);
 
-	        events = new List<JewelEvent> { DoubleJewelsEvent, ClickMultiEvent };
+	        events = new List<JewelEvent> { DoubleJewelsEvent, ClickMultiEvent, TripleJewelsEvent };
         }
     }
 
@@ -154,9 +155,9 @@ public class State : MonoBehaviour {
         jewelsPerSecond = newJps;
         
 
-        if (newJps / 20 > 1)
+        if (newJps / 10 > 1)
         {
-            jewelsPerClick = newJps / 20;
+            jewelsPerClick = newJps / 10;
         }
     }
 
