@@ -16,8 +16,9 @@ public class Upgrade {
 
     public string description;
     public int requiredBuildingAmount { get; set; }
+    public float pointsRequired { get; set; }
 
-    public Upgrade(string n, uint p, float m, string rB, string de, int rBA)
+    public Upgrade(string n, uint p, float m, string rB, string de, int rBA, float pR)
     {
         this.name = n;
         this.price = p;
@@ -25,5 +26,6 @@ public class Upgrade {
         this.requiredBuilding = rB;
         this.description = de;
         this.requiredBuildingAmount = rBA;
+        this.pointsRequired = pR;
     }
 }
