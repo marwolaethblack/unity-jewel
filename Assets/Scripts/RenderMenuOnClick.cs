@@ -99,6 +99,7 @@ public class RenderMenuOnClick : MonoBehaviour {
             PanelCard.name = building.name;
             PanelCard.tag = "Building";
 
+            //Text
             Text[] texts = PanelCard.GetComponentsInChildren<Text>();
             texts[0].text = building.name + " :\n " + (int)building.basePrice;
             texts[1].text = building.amount.ToString();
@@ -106,6 +107,10 @@ public class RenderMenuOnClick : MonoBehaviour {
             //Sprite
             Sprite image = Resources.Load<Sprite>(building.spritePath);
             PanelCard.GetComponentInChildren<SpriteRenderer>().sprite = image;
+
+            //Canvas
+            Canvas canvas = PanelCard.GetComponentInChildren<Canvas>();
+            canvas.transform.localPosition = new Vector3(0,0,0);
 
             //Setting parent for reference
             PanelCard.transform.SetParent(_panelTransform);
